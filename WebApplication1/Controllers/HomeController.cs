@@ -11,11 +11,15 @@ namespace WebApplication1.Controllers
     {
         public IActionResult Index()
         {
+
+            //test
             using (ECommerceContext eCommerceContext = new ECommerceContext()) // scope kapandığında içindekı herşey ulaşıma kaaplı
             {
                 List<User> users = eCommerceContext.Users.Include(a=>a.Address).ToList();
                 List<Address> addresses = eCommerceContext.Addresses.Include(a => a.User).ToList();
             }
+
+     
             return View();
         }
 
