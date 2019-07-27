@@ -11,14 +11,17 @@ namespace WebApplication1.Controllers
     {
         public IActionResult Index()
         {
-           
-            using (ECommerceContext eCommerceContext = new ECommerceContext()) // scope kapandığında içindekı herşey ulaşıma kaaplı
-            {
-                List<User> users = eCommerceContext.Users.Include(a=>a.Address).ToList();
-                List<Address> addresses = eCommerceContext.Addresses.Include(a => a.User).ToList();
-            }
-
-     
+            ViewData["Title"] = "Anasayfaya Hoşgeldiniz ";
+            return View();
+        }
+        public IActionResult Help()
+        {
+            ViewData["Title"] = "Yardım Masasına Hoşgeldiniz";
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            ViewData["Title"] = "İletişim sayfasına Hoşgeldiniz";
             return View();
         }
     }

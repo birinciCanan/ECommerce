@@ -1,3 +1,23 @@
-﻿@{
-    Layout = "_Layout";
-}
+﻿
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+@model List<Category>
+@{await Html.RenderPartialAsync("_Partical_Categories");}
+içerik
+<p>
+    @*<a href="/Home/Help">Yardım Masasına Git</a>*@
+    <a href="@Url.Action("Help","Home")">Yardım Masasına Git</a>   @*//hyperlink*@
+
+
+    <a href="@Url.Action("Contact","Home")">Yardım Masasına Git</a>
+    <input type="button"
+           onClick="Contact.html" ;
+           value="İletişim Sayfası" />
+
+</p>
+
+@*onClick="Contact.html"*@
+
+@*onClick=" window.open('Contact.html')"*@

@@ -1,0 +1,24 @@
+﻿@{
+
+    List<Category> categories = new List<Category>();
+
+    using (ECommerceContext eCommerceContext = new ECommerceContext()) // scope kapandığında içindekı herşey ulaşıma kaaplı
+    {
+
+        categories = eCommerceContext.Categories.ToList();
+
+    }
+
+}
+<p>
+    @{
+        foreach (Category category in categories)
+        {
+            <span><a href="@Url.Action("Index","Category",new { id = category.Id })">@category.Name</a></span> <text>|</text>
+
+            @*<span>@category.Description</span><br />*@
+        }
+
+    }
+
+</p>
