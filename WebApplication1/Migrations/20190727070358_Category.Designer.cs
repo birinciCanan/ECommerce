@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1;
 
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ECommerceContext))]
-    partial class ECommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20190727070358_Category")]
+    partial class Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,44 +44,13 @@ namespace WebApplication1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<int?>("StateId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StateId");
-
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new { Id = 1, Description = "Ev elektriğine dair herşey", Name = "Elektronik" },
-                        new { Id = 2, Description = "Mutfak elektroniği", Name = "Beyaz Eşya" },
-                        new { Id = 3, Description = "Gardrobu doldur", Name = "Tekstil" }
-                    );
-                });
-
-            modelBuilder.Entity("WebApplication1.Models.State", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Description");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("States");
-
-                    b.HasData(
-                        new { Id = 1, Name = "Aktif" },
-                        new { Id = 2, Name = "Pasif" }
-                    );
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.User", b =>
@@ -114,13 +85,6 @@ namespace WebApplication1.Migrations
                     b.HasOne("WebApplication1.Models.User", "User")
                         .WithMany("Address")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("WebApplication1.Models.Category", b =>
-                {
-                    b.HasOne("WebApplication1.Models.State", "State")
-                        .WithMany()
-                        .HasForeignKey("StateId");
                 });
 #pragma warning restore 612, 618
         }
